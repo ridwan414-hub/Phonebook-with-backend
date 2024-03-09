@@ -4,14 +4,13 @@ const cors = require('cors')
 const app = express()
 
 app.use(express.json())
-app.use(cors())
 app.use(morgan(
     'METHOD: :method - URL: :url - STATUS: :status - RESPONSE TIME: :response-time[3] ms - POSTED DATA: :postData'
-))
-morgan.token('postData', function (request) {
-    return JSON.stringify(request.body)
-})
-let persons =
+    ))
+    morgan.token('postData', function (request) {
+        return JSON.stringify(request.body)
+    })
+    let persons =
     [
         {
             "id": 1,
@@ -34,8 +33,9 @@ let persons =
             "number": "39-23-6423122"
         }
     ]
-
-app.get('/', (request, response) => {
+    
+    app.use(cors())
+    app.get('/', (request, response) => {
     response.send('<h1>Hello World!</h1>')
 })
 app.get('/info', (request, response) => {
