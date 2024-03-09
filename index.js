@@ -52,6 +52,8 @@ app.post('/api/persons', (request, response) => {
         number: body.number
     }
     const matchingName = persons.filter(p => p.name === newPerson.name);
+    console.log(matchingName);
+
     if (newPerson.name && newPerson.number) {
         if (matchingName.length>0) {
             return response.status(400).json({
@@ -85,6 +87,18 @@ app.get('/api/persons/:id', (request, response) => {
         response.status(404).end();
     }
 })
+app.put(`/api/persons/:id`, (request, response) => {
+    console.log(request.body.number);
+    const newNumber = request.body.number;
+    return response.json({
+        message : "someone want to put"
+    })
+
+
+})
+
+
+
 app.delete('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
     persons = persons.filter(person => person.id !== id)
