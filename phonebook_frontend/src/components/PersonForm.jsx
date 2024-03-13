@@ -26,7 +26,7 @@ const PersonForm = (props) => {
         .create(personsObject)
         .then((createdPerson) => {
           setPersons(persons.concat(createdPerson));
-          setErrorMessage(`'${newName}' added to the serverrrrrrr`);
+          setErrorMessage(`'${newName}' added to the server`);
           setTimeout(() => {
             setErrorMessage(null);
           }, 5000);
@@ -93,10 +93,10 @@ const PersonForm = (props) => {
   return (
     <div>
       <form onSubmit={addName}>
-        name: <input onChange={handleNameField} value={newName} required />
+        name: <input onChange={handleNameField} value={newName} required placeholder='AAA' />
         <div>
           number:
-          <input onChange={handleNumberField} value={newNumber} required />
+          <input onChange={handleNumberField} value={newNumber} required  placeholder='00-00000'/>
         </div>
         <div>
           <button type="submit">add</button>
