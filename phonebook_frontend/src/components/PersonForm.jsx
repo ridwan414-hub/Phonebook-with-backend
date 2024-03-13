@@ -24,15 +24,15 @@ const PersonForm = (props) => {
     if (!names && !numbers) {
       personService
         .create(personsObject)
-        .then((returnedPerson) => {
-          setPersons(persons.concat(returnedPerson));
-          setErrorMessage(`'${newName}' added to the server`);
+        .then((createdPerson) => {
+          setPersons(persons.concat(createdPerson));
+          setErrorMessage(`'${newName}' added to the serverrrrrrr`);
           setTimeout(() => {
             setErrorMessage(null);
           }, 5000);
         })
         .catch((error) => {
-          setErrorMessage(`'${newName}'was not added to the server`);
+          setErrorMessage(error.response.data.error);
           setTimeout(() => {
             setErrorMessage(null);
           }, 5000);
@@ -53,12 +53,12 @@ const PersonForm = (props) => {
           ) {
             personService
               .update(updatedPerson.id, updatedPerson)
-              .then((returnedPerson) => {
+              .then((updatedPerson) => {
                 setPersons(
                   persons.map((personItem) =>
                     personItem.id !== personToAdd.id
                       ? personItem
-                      : returnedPerson
+                      : updatedPerson
                   )
                 );
                 setNewName('');
